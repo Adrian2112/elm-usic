@@ -10009,6 +10009,6 @@ Elm.HelloWorld.make = function (_elm) {
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
    var _op = {};
-   var main = $Html.text("Hello, Borrego!!");
+   var main = $Html.text("Welcome to ELMusic");
    return _elm.HelloWorld.values = {_op: _op,main: main};
 };
