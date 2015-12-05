@@ -3,11 +3,10 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var path = require('path');
 
-var port = 3333;
+var port = 4444;
 
 var server = new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: true,
+  publicPath: config.output.publicPath
 });
 
 // Important part. Send down index.html for all requests
