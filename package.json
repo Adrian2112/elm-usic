@@ -16,11 +16,9 @@
     "less-loader": "^2.2.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1",
-    "ulmus-loader": "^0.2.0"
+    "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "elm": "^0.16.0",
     "elm-simple-loader": "^1.0.1",
     "elm-webpack-loader": "^0.2.0",
     "lodash": "^3.10.1",
