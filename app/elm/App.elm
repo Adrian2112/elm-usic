@@ -1,4 +1,4 @@
-module HelloWorld where
+module App where
 
 import Html exposing (text)
 
