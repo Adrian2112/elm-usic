@@ -34,8 +34,8 @@ module.exports = {
       // {test: /\.elm$/,    loader: 'expose?Elm!exports?Elm!ulmus?output=tmp/[name].js', exclude: [/node_modules/]},
       {test: /\.elm$/, loader: 'elm-simple-loader', exclude: [/elm-stuff/, /node_modules/]},
       {test: /\.less$/,   loaders: ['style', 'css', 'less']}
-    ],
-    noParse: /\.elm$/
+    ]//,
+    //noParse: /\.elm$/
   },
 
 };
