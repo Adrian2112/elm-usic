@@ -5,7 +5,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 -- Model
-type alias Model = 
+type alias Model =
   {
     url : String,
     name : String
@@ -24,9 +24,9 @@ update action model =
 
 
 -- View
-view : Model -> Html
-view model =
-  div [ class "song" ]
+view : Signal.Address Action -> Model -> Html
+view address model =
+  div [onClick address NoOp, class "song"]
     [
       div [ class "avatar" ] [],
       div [class "name"] [ text model.name ],

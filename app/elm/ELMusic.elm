@@ -23,19 +23,21 @@ init =
     }
 
 -- Update
-type Action = NoOp
+type Action = SelectSong String
 
 update : Action -> Model -> Model
 update action model =
-  model
+  case action of
+    SelectSong url->
+      { model | visualizer = Visualizer.init url }
 
 
 -- View
 view : Signal.Address Action -> Model -> Html
-view action model =
+view address model =
   div [ id "prototype" ]
     [
       (Visualizer.view model.visualizer),
       div [ class "list" ]
-        (List.map Song.view model.songs)
+        (List.map (\song -> Song.view (Signal.forwardTo address (always (SelectSong (.url song)))) song) model.songs)
     ]
