@@ -16,7 +16,7 @@ type alias Model =
 
 init : Model
 init =
-    { visualizer = Visualizer.init "",
+    { visualizer = Visualizer.init Nothing,
     songs = [
       Song.init "https://www.youtube.com/embed/U6vp1EMnqho" "Neil Young",
       Song.init "https://www.youtube.com/embed/j9Dr1anRP9w" "Concierto pa george"]
@@ -29,7 +29,7 @@ update : Action -> Model -> Model
 update action model =
   case action of
     SelectSong url->
-      { model | visualizer = Visualizer.init url }
+      { model | visualizer = Visualizer.init (Just url) }
 
 
 -- View
