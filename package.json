@@ -1,29 +1,17 @@
 {
   "name": "ELMusic",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A Basic ELM app that reads from the Reddit Music ",
   "scripts": {
-    "start": "node server.js",
-    "build": "NODE_ENV=production webpack -p --config webpack.production.config.js --progress --colors"
+    "start": "gulp"
   },
   "devDependencies": {
-    "clean-webpack-plugin": "^0.1.4",
-    "css-loader": "^0.22.0",
-    "extract-text-webpack-plugin": "^0.9.1",
-    "html-webpack-plugin": "^1.7.0",
-    "less": "^2.5.3",
     "elm": "^0.16.0",
-    "less-loader": "^2.2.1",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-elm": "^0.2.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-uglifyjs": "^0.6.2"
   },
-  "dependencies": {
-    "elm-simple-loader": "^1.0.1",
-    "elm-webpack-loader": "^0.2.0",
-    "lodash": "^3.10.1",
-    "moment": "^2.10.6",
-    "node-elm-compiler": "^2.1.0",
-    "rx": "^4.0.7"
-  }
+  "dependencies": {}
 }

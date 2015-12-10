@@ -7,7 +7,7 @@ A basic music player written in ELM that reads from the Music subreddit.
 ```
 npm install
 npm start
-open http://localhost:4444
+open http://localhost:8080
 ```
 
 ## Collaborators
