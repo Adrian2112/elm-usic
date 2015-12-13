@@ -3,4 +3,9 @@ elm-stuff
 elm.js
 npm-debug.log
 .DS_Store
-dist
+
+# Compiled elm app
+app/js/App.js
+
+public/assets/*
+

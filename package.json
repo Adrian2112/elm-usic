@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "A Basic ELM app that reads from the Reddit Music ",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "clean": "rm -rf node_modules elm-stuff public/assets/ app/js/App.js"
   },
   "devDependencies": {
     "elm": "^0.16.0",

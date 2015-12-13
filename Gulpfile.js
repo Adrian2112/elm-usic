@@ -15,35 +15,35 @@ gulp.task('elm', function() {
 gulp.task('sass', function () {
   return gulp.src('app/sass/**/*.scss')
   .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('dist/css/'))
+  .pipe(gulp.dest('public/assets/css/'))
   .pipe(connect.reload());
 });
 
 gulp.task('html', function () {
-  return gulp.src('dist/index.html')
+  return gulp.src('public/index.html')
   .pipe(connect.reload());
 });
 
-gulp.task('js', function() {
+gulp.task('js', ['elm'], function() {
   return gulp.src('app/js/**/*.js')
   .pipe(uglify('app.min.js'))
-  .pipe(gulp.dest('dist/js'))
+  .pipe(gulp.dest('public/assets/js'))
   .pipe(connect.reload());
 });
 
 gulp.task('connect', function() {
   return connect.server({
-    root: 'dist',
+    root: 'public',
     livereload: true
   });
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./app/elm/**/*.elm'], ['elm']);
+  gulp.watch(['./app/elm/**/*.elm'], ['js']);
   gulp.watch(['./app/sass/**/*.scss'], ['sass']);
   gulp.watch(['./app/js/**/*.js'], ['js']);
-  gulp.watch(['./dist/index.html'], ['html']);
+  gulp.watch(['./public/index.html'], ['html']);
 });
 
-gulp.task('default', ['elm', 'js', 'sass', 'connect', 'watch']);
+gulp.task('default', ['js', 'sass', 'connect', 'watch']);
 
