@@ -1,13 +1,22 @@
 module App where
-import StartApp.Simple exposing (start)
+import StartApp
 
 import ELMusic exposing (init, update, view)
 import Html exposing (text)
 
-main =
-  start
+app =
+  StartApp.start
     {
-      model = init,
+      init = init,
       update = update,
-      view = view
+      view = view,
+      inputs = [events]
     }
+
+main =
+  app.html
+
+events =
+    Signal.map (always ELMusic.SongFinished) songFinished
+
+port songFinished : Signal String

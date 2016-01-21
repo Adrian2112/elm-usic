@@ -1,5 +1,7 @@
 module ELMusic where
 
+import Effects exposing (Effects)
+
 import Array exposing (Array)
 
 import Html exposing (..)
@@ -17,32 +19,33 @@ type alias Model =
     nextID : Int
   }
 
-init : Model
+init : (Model, Effects Action)
 init =
-    { visualizer = Visualizer.init Nothing,
+    ({ visualizer = Visualizer.init Nothing,
       songs = Array.fromList [
         Song.init "https://www.youtube.com/embed/U6vp1EMnqho" "Neil Young",
         Song.init "https://www.youtube.com/embed/j9Dr1anRP9w" "Concierto pa george"
         ],
       nextID = 1
-     }
+    }, Effects.none)
 
 -- Update
 type Action
   = SelectSong Song.Model
     | SongFinished
 
-update : Action -> Model -> Model
+update : Action -> Model -> (Model, Effects Action)
 update action model =
   case action of
     SelectSong song ->
-      { model | visualizer = Visualizer.init (Just song) }
+      ({ model | visualizer = Visualizer.init (Just song) }, Effects.none)
     SongFinished ->
-      {
+      ({
         model |
           visualizer = Visualizer.init (Array.get model.nextID model.songs),
           nextID = model.nextID + 1
-      }
+      },
+      Effects.none)
 
 
 -- View
