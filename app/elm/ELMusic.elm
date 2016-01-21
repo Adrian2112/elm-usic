@@ -1,5 +1,7 @@
 module ELMusic where
 
+import Array exposing (Array)
+
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -11,25 +13,36 @@ import Visualizer
 type alias Model =
   {
     visualizer : Visualizer.Model,
-    songs : List Song.Model
+    songs : Array Song.Model,
+    nextID : Int
   }
 
 init : Model
 init =
     { visualizer = Visualizer.init Nothing,
-    songs = [
-      Song.init "https://www.youtube.com/embed/U6vp1EMnqho" "Neil Young",
-      Song.init "https://www.youtube.com/embed/j9Dr1anRP9w" "Concierto pa george"]
-    }
+      songs = Array.fromList [
+        Song.init "https://www.youtube.com/embed/U6vp1EMnqho" "Neil Young",
+        Song.init "https://www.youtube.com/embed/j9Dr1anRP9w" "Concierto pa george"
+        ],
+      nextID = 1
+     }
 
 -- Update
-type Action = SelectSong String
+type Action
+  = SelectSong Song.Model
+    | SongFinished
 
 update : Action -> Model -> Model
 update action model =
   case action of
-    SelectSong url->
-      { model | visualizer = Visualizer.init (Just url) }
+    SelectSong song ->
+      { model | visualizer = Visualizer.init (Just song) }
+    SongFinished ->
+      {
+        model |
+          visualizer = Visualizer.init (Array.get model.nextID model.songs),
+          nextID = model.nextID + 1
+      }
 
 
 -- View
@@ -39,5 +52,5 @@ view address model =
     [
       (Visualizer.view model.visualizer),
       div [ class "list" ]
-        (List.map (\song -> Song.view (Signal.forwardTo address (always (SelectSong (.url song)))) song) model.songs)
+        (List.map (\song -> Song.view (Signal.forwardTo address (always (SelectSong song))) song) (Array.toList model.songs))
     ]

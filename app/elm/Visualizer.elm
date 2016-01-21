@@ -6,15 +6,17 @@ import Html.Events exposing (..)
 import Json.Encode as Json
 import String exposing (append)
 
+import Song
+
 -- Model
 type alias Model =
   {
-    url : Maybe String
+    song : Maybe Song.Model
   }
 
-init : Maybe String -> Model
-init url =
-    { url = url }
+init : Maybe Song.Model -> Model
+init song =
+    { song = song }
 
 -- Update
 type Action = NoOp
@@ -34,9 +36,9 @@ view model =
 
 player : Model -> Html
 player model =
-  case model.url of
-    Just url ->
-      iframe [src (append url "?autoplay=1"), width 390, height 200, property "frameBorder" (Json.string "0") ] []
+  case model.song of
+    Just song ->
+      iframe [src (append song.url "?autoplay=1"), width 390, height 200, property "frameBorder" (Json.string "0") ] []
     Nothing ->
       div [] []
 
